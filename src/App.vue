@@ -1,5 +1,16 @@
-<script setup>
+<script>
 import AutoComplete from './components/AutoComplete.vue'
+
+export default {
+  components: {
+    AutoComplete
+  },
+  methods: {
+    handleStationSelected(selectedStation) {
+      console.log('Selected station:', selectedStation)
+    }
+  }
+}
 </script>
 
 <template>
@@ -8,7 +19,7 @@ import AutoComplete from './components/AutoComplete.vue'
     <p class="text-sm md:text-xl">*study case for RoadSurfer</p>
   </header>
   <main>
-    <AutoComplete />
+    <AutoComplete @station-selected="handleStationSelected" />
   </main>
 </template>
 
