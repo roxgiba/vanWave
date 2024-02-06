@@ -5,7 +5,10 @@ export default {
       inputValue: '',
       results: [],
       showResults: false,
-      selectedStation: ''
+      selectedStation: '',
+      bookings: [],
+      weekDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      selectedDay: null
     }
   },
   methods: {
@@ -18,6 +21,17 @@ export default {
           this.showResults = true
         })
     },
+    getBookingsForDay(day) {
+      // Return the bookings for the selected day
+      return this.bookings.filter(
+        (booking) => new Date(booking.startDate).getDay() === this.weekDays.indexOf(day)
+      )
+    },
+
+    openBookingDetails(booking) {
+      this.$emit('open-booking-details', booking)
+    },
+
     selectResult(result) {
       this.selectedStation = result
 
@@ -28,8 +42,19 @@ export default {
         .then((data) => {
           this.bookings = data
         })
+
+        // VCalendar possible use
+
+        // .then((data) => {
+        //   const bookings = data.map((booking) => ({
+        //     title: result.name,
+        //     startDate: new Date(booking.startDate),
+        //     endDate: new Date(booking.endDate)
+        //   }))
+        //   this.$emit('result-selected', bookings)
+        // })
         .catch((error) => {
-          error
+          console.log('Error fetching booking:', error)
         })
 
       this.$emit('result-selected', result)
@@ -66,7 +91,59 @@ export default {
         </li>
       </ul>
     </div>
+    <!-- WEEK VIEW -->
+    <div v-if="selectedStation" class="mt-10">
+      <h2 class="text-base md:text-2xl font-bold pb-2">
+        Week View for: {{ selectedStation.name }}
+      </h2>
+      <div id="calendar-like">
+        <div>
+          <button class="text-xs pr-5">&lt; previous</button>
+          <span class="font-bold">month & year</span>
+          <button class="text-xs pl-5">next ></button>
+        </div>
+        <div id="week-view" class="m-8 grid grid-cols-1 md:grid-cols-7 gap-4">
+          <div v-for="day in weekDays" :key="day" class="day-tile">
+            <h3 className="font-bold text-lg">{{ day }}</h3>
+            <ul>
+              <li
+                v-for="booking in getBookingsForDay(day)"
+                :key="booking.id"
+                @click="openBookingDetails(booking)"
+              >
+                {{ booking.customerName }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
-<style></style>
+<style>
+.week-view {
+  display: flex;
+  justify-content: space-between;
+}
+
+.day-tile {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 5px;
+}
+
+.day-tile h3 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.day-tile ul {
+  list-style: none;
+  padding: 0;
+}
+
+.day-tile li {
+  margin-bottom: 5px;
+}
+</style>

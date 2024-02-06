@@ -5,9 +5,17 @@ export default {
   components: {
     AutoComplete
   },
+  data() {
+    return {
+      bookings: []
+    }
+  },
   methods: {
-    handleStationSelected(selectedStation) {
-      console.log('Selected station:', selectedStation)
+    handleResultSelected(bookings) {
+      console.log('handleResultSelected called', bookings)
+      // Update the 'bookings' data in the parent component
+      this.bookings = bookings
+      console.log('Parent component bookings:', this.bookings)
     }
   }
 }
@@ -19,7 +27,8 @@ export default {
     <p class="text-sm md:text-xl">*study case for RoadSurfer</p>
   </header>
   <main>
-    <AutoComplete @station-selected="handleStationSelected" />
+    <AutoComplete @result-selected="handleResultSelected" />
+    <!-- <VCalendar :events="bookings" expanded view="weekly" /> -->
   </main>
 </template>
 
@@ -28,12 +37,14 @@ export default {
   font-family: 'Encode Sans', sans-serif;
 }
 
-main {
+/* main {
   background-image: url('@/assets/imgUrl.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  height: 600px; /* Make it cover the entire viewport height */
+  height: 600px; /* Make it cover the entire viewport height 
 }
+
+*/
 </style>
