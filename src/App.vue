@@ -27,4 +27,13 @@ export default {
 * {
   font-family: 'Encode Sans', sans-serif;
 }
+
+main {
+  background-image: url('@/assets/imgUrl.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 600px; /* Make it cover the entire viewport height */
+}
 </style>

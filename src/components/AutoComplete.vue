@@ -28,7 +28,9 @@ export default {
         .then((data) => {
           this.bookings = data
         })
-        .catch((error) => error)
+        .catch((error) => {
+          error
+        })
 
       this.$emit('result-selected', result)
       this.showResults = false
@@ -40,15 +42,31 @@ export default {
 
 <template>
   <div class="text-center m-5">
-    <label>Search for station: </label>
-    <input v-model="inputValue" @input="search" class="border-2 rounded border-blue-700" />
-
-    <div v-if="showResults">
-      <ul>
-        <li v-for="result in results" :key="result.id" @click="selectResult(result)">
+    <form>
+      <fieldset class="">
+        <legend class="p-2 font-bold text-lg md:text-2xl">Search for station:</legend>
+        <label for="input"></label>
+        <input
+          id="input"
+          v-model="inputValue"
+          @input="search"
+          class="border-2 rounded border-blue-700"
+        />
+      </fieldset>
+    </form>
+    <div v-if="showResults" class="flex justify-center py-2">
+      <ul class="w-full md:w-1/5 mt-1 center border border-gray-300 rounded-md bg-white/60">
+        <li
+          v-for="result in results"
+          :key="result.id"
+          @click="selectResult(result)"
+          class="border-b border-gray-200 text-stone-600cursor-pointer hover:bg-gray-100 transition-colors"
+        >
           {{ result.name }}
         </li>
       </ul>
     </div>
   </div>
 </template>
+
+<style></style>
