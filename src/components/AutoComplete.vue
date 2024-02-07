@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   emits: ['result-selected'],
   data() {
@@ -37,11 +39,15 @@ export default {
   methods: {
     search() {
       const api = `https://605c94c36d85de00170da8b4.mockapi.io/stations?search=${this.inputValue}`
-      fetch(api)
-        .then((response) => response.json())
-        .then((data) => {
-          this.results = data
+
+      axios
+        .get(api)
+        .then((response) => {
+          this.results = response.data
           this.showResults = true
+        })
+        .catch((error) => {
+          console.error('City not found', error)
         })
     },
     selectResult(result) {
