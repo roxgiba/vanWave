@@ -3,13 +3,15 @@
     <h1 className="text-4xl font-bold md:text-6xl p-5">
       Welcome to <span class="italic">VanWave</span>
     </h1>
-    <h4 className="text-sm md:text-xl">*This is a tech challenge for RoadSurfer</h4>
+    <p className="text-sm md:text-xl">*This is a tech challenge for RoadSurfer</p>
   </header>
 
   <main>
     <div class="text-center m-5">
       <AutoComplete @result-selected="selectResult" />
+      <div v-if="loading" class="text-2xl text-gray-500">Loading...</div>
       <WeekView
+        v-else
         :selectedStation="selectedStation"
         :weekDays="weekDays"
         :bookings="bookings"
@@ -45,13 +47,15 @@ export default {
       bookings: [],
       weekDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
       selectedDay: null,
-      selectedBooking: null
+      selectedBooking: null,
+      loading: false
     }
   },
 
   methods: {
     selectResult(result) {
       this.selectedStation = result
+      this.loading = true
 
       const apiBooking = `https://605c94c36d85de00170da8b4.mockapi.io/stations/${result.id}/bookings`
 
@@ -62,6 +66,9 @@ export default {
         })
         .catch((error) => {
           console.log('Error fetching booking:', error)
+        })
+        .finally(() => {
+          this.loading = false
         })
 
       this.$emit('result-selected', result)
