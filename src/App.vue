@@ -31,6 +31,7 @@
 import AutoComplete from './components/AutoComplete.vue'
 import WeekView from './components/WeekView.vue'
 import BookingDetailModal from './components/BookingDetailModal.vue'
+import axios from 'axios'
 
 export default {
   components: {
@@ -59,10 +60,10 @@ export default {
 
       const apiBooking = `https://605c94c36d85de00170da8b4.mockapi.io/stations/${result.id}/bookings`
 
-      fetch(apiBooking)
-        .then((response) => response.json())
-        .then((data) => {
-          this.bookings = data
+      axios
+        .get(apiBooking)
+        .then((response) => {
+          this.bookings = response.data
         })
         .catch((error) => {
           console.log('Error fetching booking:', error)
