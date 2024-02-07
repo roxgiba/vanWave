@@ -29,10 +29,6 @@ export default {
       )
     },
 
-    // openBookingDetails(booking) {
-    //   this.$emit('open-booking-details', booking)
-    // },
-
     openBookingDetails(booking) {
       this.selectedBooking = booking
     },
@@ -61,7 +57,7 @@ export default {
           this.bookings = data
         })
 
-        // VCalendar possible use
+        // ** VCalendar possible use
 
         // .then((data) => {
         //   const bookings = data.map((booking) => ({
@@ -154,7 +150,6 @@ export default {
         </p>
         <p><strong>Return Station: </strong>{{ selectedStation.name }}</p>
 
-        <!-- Add more details as needed -->
         <button @click="closeBookingDetails" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
           Close
         </button>
@@ -163,112 +158,4 @@ export default {
   </div>
 </template>
 
-<style>
-.week-view {
-  display: flex;
-  justify-content: space-between;
-}
-
-.day-tile {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 5px;
-}
-
-.day-tile h3 {
-  text-align: center;
-  margin-bottom: 5px;
-}
-
-.day-tile ul {
-  list-style: none;
-  padding: 0;
-}
-
-.day-tile li {
-  margin-bottom: 5px;
-}
-
-/* Styles for the modal */
-.bg-opacity-50 {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.fixed {
-  position: fixed;
-}
-
-.top-0 {
-  top: 0;
-}
-
-.left-0 {
-  left: 0;
-}
-
-.w-full {
-  width: 100%;
-}
-
-.h-full {
-  height: 100%;
-}
-
-.flex {
-  display: flex;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.bg-white {
-  background-color: #fff;
-}
-
-.p-8 {
-  padding: 2rem;
-}
-
-.rounded-md {
-  border-radius: 0.375rem;
-}
-
-.text-lg {
-  font-size: 1.125rem;
-}
-
-.mb-4 {
-  margin-bottom: 1rem;
-}
-
-.mt-4 {
-  margin-top: 1rem;
-}
-
-.bg-blue-500 {
-  background-color: #3b82f6;
-}
-
-.text-white {
-  color: #fff;
-}
-
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
-.rounded {
-  border-radius: 0.25rem;
-}
-</style>
+<style></style>
