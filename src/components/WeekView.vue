@@ -6,9 +6,9 @@
     </h2>
     <div id="calendar-like">
       <div>
-        <button class="text-xs pr-5">&lt; previous</button>
-        <span class="font-bold">month & year</span>
-        <button class="text-xs pl-5">next ></button>
+        <button class="text-xs pr-5" @click="prevMonth">&lt; previous</button>
+        <span class="font-bold">{{ currentMonthAndYear }}</span>
+        <button class="text-xs pl-5" @click="nextMonth">next ></button>
       </div>
       <div id="week-view" class="m-8 grid grid-cols-1 md:grid-cols-7 gap-4">
         <div v-for="day in weekDays" :key="day" class="day-tile rounded-md">
@@ -39,7 +39,9 @@ export default {
 
   data() {
     return {
-      selectedBooking: null
+      selectedBooking: null,
+      currentDate: new Date(),
+      currentMonthAndYear: ''
     }
   },
 
@@ -49,6 +51,20 @@ export default {
       return this.bookings.filter(
         (booking) => new Date(booking.startDate).getDay() === this.weekDays.indexOf(day)
       )
+    },
+    updateMonthAndYear() {
+      const options = { month: 'long', year: 'numeric' }
+      this.currentMonthAndYear = this.currentDate.toLocaleDateString('en-GB', options)
+    },
+
+    prevMonth() {
+      this.currentDate.setMonth(this.currentDate.getMonth() - 1)
+      this.updateMonthAndYear()
+    },
+
+    nextMonth() {
+      this.currentDate.setMonth(this.currentDate.getMonth() + 1)
+      this.updateMonthAndYear()
     },
 
     openBookingDetails(booking) {
