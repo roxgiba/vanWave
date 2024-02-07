@@ -82,16 +82,15 @@ export default {
 <template>
   <div class="text-center m-5">
     <form>
-      <fieldset class="">
-        <legend class="p-2 font-bold text-lg md:text-2xl">Search for station:</legend>
-        <label for="input"></label>
+      <label for="input" class="p-2 font-bold text-lg md:text-2xl">
+        Search for station:
         <input
           id="input"
           v-model="inputValue"
           @input="search"
-          class="border-2 rounded border-blue-700"
+          class="font-normal border-2 rounded border-blue-700"
         />
-      </fieldset>
+      </label>
     </form>
     <div v-if="showResults" class="flex justify-center py-2">
       <ul class="w-full md:w-1/5 mt-1 center border border-gray-300 rounded-md bg-white/60">
@@ -106,7 +105,7 @@ export default {
       </ul>
     </div>
     <!-- WEEK VIEW -->
-    <div v-if="selectedStation" class="mt-10 bg-stone-300/50 p-3 rounded-lg">
+    <div v-if="selectedStation" class="mt-10 bg-stone-300/80 p-3 rounded-lg">
       <h2 class="text-base md:text-2xl font-bold pb-2">
         Week View for: {{ selectedStation.name }}
       </h2>
@@ -117,14 +116,14 @@ export default {
           <button class="text-xs pl-5">next ></button>
         </div>
         <div id="week-view" class="m-8 grid grid-cols-1 md:grid-cols-7 gap-4">
-          <div v-for="day in weekDays" :key="day" class="day-tile">
+          <div v-for="day in weekDays" :key="day" class="day-tile rounded-md">
             <h3 className="font-bold text-lg">{{ day }}</h3>
             <ul>
               <li
                 v-for="booking in getBookingsForDay(day)"
                 :key="booking.id"
                 @click="openBookingDetails(booking)"
-                class="cursor-pointer text-blue-600"
+                class="cursor-pointer text-blue-600 hover:bg-gray-100/50 rounded transition-colors"
               >
                 {{ booking.customerName }}
               </li>

@@ -22,8 +22,8 @@ export default {
 </script>
 
 <template>
-  <header class="w-full text-center bg-[#6bbbae]">
-    <h1 class="text-white italic text-3xl font-bold md:text-5xl">vanWave</h1>
+  <header class="w-full text-center bg-[#6bbbae] p-2">
+    <h1 class="italic text-4xl font-bold md:text-7xl">vanWave</h1>
     <p class="text-sm md:text-xl">*study case for RoadSurfer</p>
   </header>
   <main>
