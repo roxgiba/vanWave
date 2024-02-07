@@ -1,6 +1,9 @@
 <template>
   <div v-if="selectedStation" class="mt-10 bg-stone-300/80 p-3 rounded-lg">
-    <h2 class="text-xl md:text-2xl font-bold pb-2">Week View for: {{ selectedStation.name }}</h2>
+    <h2 class="text-lg md:text-2xl font-bold pb-2">
+      Week View for:
+      <span class="text-xl md:text-3xl tracking-wide underline">{{ selectedStation.name }}</span>
+    </h2>
     <div id="calendar-like">
       <div>
         <button class="text-xs pr-5">&lt; previous</button>

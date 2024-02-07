@@ -26,6 +26,7 @@
 
 <script>
 export default {
+  emits: ['result-selected'],
   data() {
     return {
       inputValue: '',
