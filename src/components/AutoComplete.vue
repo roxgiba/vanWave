@@ -10,7 +10,10 @@
       />
     </label>
   </form>
-  <div v-if="showResults" class="flex justify-center py-2">
+
+  <div v-if="loading" class="flex justify-center py-2">Loading...</div>
+
+  <div v-if="showResults && !loading" class="flex justify-center py-2">
     <ul class="w-full md:w-1/5 mt-1 center border border-gray-300 rounded-md bg-white/60">
       <li
         v-for="result in results"
@@ -21,6 +24,9 @@
         {{ result.name }}
       </li>
     </ul>
+  </div>
+  <div v-if="!loading && showResults && results.length === 0" class="text-black">
+    City not found
   </div>
 </template>
 
@@ -33,11 +39,15 @@ export default {
     return {
       inputValue: '',
       results: [],
-      showResults: false
+      showResults: false,
+      loading: false
     }
   },
   methods: {
     search() {
+      this.loading = true
+      this.cityNotFound = false
+
       const api = `https://605c94c36d85de00170da8b4.mockapi.io/stations?search=${this.inputValue}`
 
       axios
@@ -45,9 +55,14 @@ export default {
         .then((response) => {
           this.results = response.data
           this.showResults = true
+          this.cityNotFound = this.results.length === 0
         })
         .catch((error) => {
           console.error('City not found', error)
+          this.cityNotFound = true
+        })
+        .finally(() => {
+          this.loading = false
         })
     },
     selectResult(result) {
