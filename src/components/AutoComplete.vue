@@ -1,8 +1,9 @@
 <template>
-  <form class="">
+  <form data-test="city-input">
     <label for="input" class="p-2 font-bold text-lg md:text-2xl">
       Search for station:
       <input
+        data-test="city"
         id="input"
         v-model="inputValue"
         @input="search"
@@ -16,6 +17,7 @@
   <div v-if="showResults && !loading" class="flex justify-center py-2">
     <ul class="w-full md:w-1/5 mt-1 center border border-gray-300 rounded-md bg-white/60">
       <li
+        id="results"
         v-for="result in results"
         :key="result.id"
         @click="selectResult(result)"
