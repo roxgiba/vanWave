@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form class="">
     <label for="input" class="p-2 font-bold text-lg md:text-2xl">
       Search for station:
       <input
@@ -59,3 +59,5 @@ export default {
   }
 }
 </script>
+
+<style></style>

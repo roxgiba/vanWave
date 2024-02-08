@@ -1,9 +1,13 @@
 <template>
-  <header class="w-full text-center bg-[#6bbbae] p-2">
-    <h1 className="text-4xl font-bold md:text-6xl p-5">
-      Welcome to <span class="italic">VanWave</span>
-    </h1>
-    <p className="text-sm md:text-xl">*This is a tech challenge for RoadSurfer</p>
+  <header class="w-full text-center bg-[#6bbbae] p-2 flex justify-between">
+    <h1 className="text-4xl font-bold md:text-6xl p-5 italic">VanWave</h1>
+
+    <button
+      class="font-semibold text-lg pl-2 pr-2 md:2xl cursor-pointer hover:text-blue-800 bg-slate-200 h-8 place-self-center md:mr-20 rounded"
+      @click="resetPage"
+    >
+      Home
+    </button>
   </header>
 
   <main>
@@ -31,6 +35,7 @@
 import AutoComplete from './components/AutoComplete.vue'
 import WeekView from './components/WeekView.vue'
 import BookingDetailModal from './components/BookingDetailModal.vue'
+
 import axios from 'axios'
 
 export default {
@@ -82,6 +87,17 @@ export default {
 
     closeBookingDetails() {
       this.selectedBooking = null
+    },
+    resetPage() {
+      ;(this.inputValue = ''),
+        (this.results = []),
+        (this.showResults = false),
+        (this.selectedStation = null),
+        (this.bookings = []),
+        (this.weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']),
+        (this.selectedDay = null),
+        (this.selectedBooking = null),
+        (this.loading = false)
     }
   }
 }

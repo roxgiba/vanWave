@@ -7,6 +7,10 @@
   font-family: 'Encode Sans', sans-serif;
 }
 
+h1 {
+  font-family: 'Pacifico', cursive;
+}
+
 .week-view {
   display: flex;
   justify-content: space-between;
