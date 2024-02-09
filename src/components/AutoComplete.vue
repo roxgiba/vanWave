@@ -28,7 +28,7 @@
     </ul>
   </div>
   <div v-if="!loading && showResults && results.length === 0" class="text-black">
-    City not found
+    Station not found
   </div>
 </template>
 
@@ -60,7 +60,7 @@ export default {
           this.cityNotFound = this.results.length === 0
         })
         .catch((error) => {
-          console.error('City not found', error)
+          console.error('Station not found', error)
           this.cityNotFound = true
         })
         .finally(() => {
