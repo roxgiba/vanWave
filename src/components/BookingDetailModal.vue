@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="selectedBooking"
-    class="fixed top-24 left-0 md:top-20 w-full h-full bg-black/50 flex items-center justify-center"
+    class="fixed top-24 left-0 md:top-30 w-full h-full bg-black/50 flex items-center justify-center"
   >
     <div class="bg-white p-5 rounded-md">
       <h2 class="text-lg font-bold mb-4">Customer's Booking Details</h2>

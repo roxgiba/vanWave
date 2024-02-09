@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full text-center bg-[#6bbbae] p-2 flex justify-between">
+  <header class="w-full h-24 text-center bg-[#6bbbae] p-2 flex justify-between">
     <h1 className="text-4xl font-bold md:text-6xl p-5 italic">VanWave</h1>
 
     <button

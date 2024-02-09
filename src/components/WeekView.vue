@@ -4,9 +4,9 @@
       Week View for:
       <span class="text-xl md:text-3xl tracking-wide underline">{{ selectedStation.name }}</span>
     </h2>
-    <VCalendar view="weekly" transparent borderless class="m-3" />
+    <VCalendar view="weekly" transparent borderless locale="en-US" class="m-3" h-10 />
     <div id="calendar-like">
-      <!-- <div>
+      <!-- <div class="p-6">
         <button class="text-xs pr-5" @click="prevMonth">&lt; previous</button>
         <span class="font-bold">{{ currentMonthAndYear }}</span>
         <button class="text-xs pl-5" @click="nextMonth">next ></button>
@@ -54,26 +54,27 @@ export default {
         (booking) => new Date(booking.startDate).getDay() === this.weekDays.indexOf(day)
       )
     },
-    updateMonthAndYear() {
-      const options = { month: 'long', year: 'numeric' }
-      this.currentMonthAndYear = this.currentDate.toLocaleDateString('en-GB', options)
-    },
-
-    prevMonth() {
-      this.currentDate.setMonth(this.currentDate.getMonth() - 1)
-      this.updateMonthAndYear()
-    },
-
-    nextMonth() {
-      this.currentDate.setMonth(this.currentDate.getMonth() + 1)
-      this.updateMonthAndYear()
-    },
 
     openBookingDetails(booking) {
       this.$emit('open-booking-details', booking)
       this.selectedBooking = booking
       console.log('opening modal')
     }
+
+    // updateMonthAndYear() {
+    //   const options = { month: 'long', year: 'numeric' }
+    //   this.currentMonthAndYear = this.currentDate.toLocaleDateString('en-GB', options)
+    // },
+
+    // prevMonth() {
+    //   this.currentDate.setMonth(this.currentDate.getMonth() - 1)
+    //   this.updateMonthAndYear()
+    // },
+
+    // nextMonth() {
+    //   this.currentDate.setMonth(this.currentDate.getMonth() + 1)
+    //   this.updateMonthAndYear()
+    // },
   }
 }
 </script>
