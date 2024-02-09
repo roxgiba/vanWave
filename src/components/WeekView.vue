@@ -6,6 +6,7 @@
     </h2>
     <VCalendar view="weekly" transparent borderless locale="en-US" class="m-3" h-10 />
     <div id="calendar-like">
+      <!-- ALTERNATIVE TO VCalendar -->
       <!-- <div class="p-6">
         <button class="text-xs pr-5" @click="prevMonth">&lt; previous</button>
         <span class="font-bold">{{ currentMonthAndYear }}</span>
@@ -61,6 +62,7 @@ export default {
       console.log('opening modal')
     }
 
+    // ALTERNATIVE TO VCalendar logic
     // updateMonthAndYear() {
     //   const options = { month: 'long', year: 'numeric' }
     //   this.currentMonthAndYear = this.currentDate.toLocaleDateString('en-GB', options)
